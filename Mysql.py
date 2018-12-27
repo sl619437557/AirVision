@@ -13,7 +13,8 @@ app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN']=True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=Flask
 db=SQLAlchemy(app)
 class airport(db.Model):
-    AirportID=db.Column(db.Integer)
+    __tablename__='airport'
+    AirportID=db.Column(db.Integer,primary_key=True)
     Name=db.Column(db.Text)
     City=db.Column(db.Text)
     Country=db.Column(db.Text)
@@ -23,13 +24,4 @@ class airport(db.Model):
     Longitude=db.Column(db.Float)
     Altitude=db.Column(db.Integer)
 
-    def __init__(self,AirportID,Name,City,Country,IATA,ICAO,Latitude,Longitude,Altitude):
-        self.Airport=AirportID
-        self.Name=Name
-        self.City=City
-        self.Country=Country
-        self.IATA=IATA
-        self.ICAO=ICAO
-        self.Latitude=Latitude
-        self.Longitude=Longitude
-        self.Altitude=Altitude
+print(airport(Country='China'))
