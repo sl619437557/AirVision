@@ -14,7 +14,7 @@ app = Flask(__name__)
 # # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Flask
 
 app.config['SECRET_KEY']='123456'
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:sl753951@127.0.0.1:3306/Air'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:1205@127.0.0.1:3306/Air'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN']=True
 
 db = SQLAlchemy(app)
@@ -22,7 +22,7 @@ db = SQLAlchemy(app)
 
 class Airport(db.Model):
     __tablename__ = 'airport2'
-    AirportID = db.Column(db.Integer, primary_key=True)
+    AirportID = db.Column(db.Integer,primary_key=True)
     Name = db.Column(db.Text)
     City = db.Column(db.Text)
     Country = db.Column(db.Text)
@@ -42,8 +42,21 @@ class Routes(db.Model):
     SourceAirportID=db.Column(db.Integer)
     DestinationAirport=db.Column(db.Text)
     DestinationAirportID=db.Column(db.Integer)
+    ID=db.Column(db.Integer,primary_key=True)
     def __repr(self):
         return '<Routes %r>' %self.name
     
-    
-#db.create_all();
+class Airline(db.Model):
+    __tablename__='airline2'
+    AirlineID=db.Column(db.Integer,primary_key=True)
+    Name=db.Column(db.Text)
+    IATA=db.Column(db.Text)
+    ICAO=db.Column(db.Text)
+    Country=db.Column(db.Text)
+    def __repr(self):
+        return '<Routes %r>' %self.name
+
+#db.create_all()
+print(Airport.query.count())
+print(Routes.query.count())
+print(Airline.query.count())
