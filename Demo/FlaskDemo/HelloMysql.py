@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 app=Flask(__name__)
 
 app.config['SECRET_KEY']='123456'
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:2018@127.0.0.1:3306/flask2018'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:sl753951@127.0.0.1:3306/flask2018'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN']=True
 db=SQLAlchemy(app)
 
@@ -26,11 +26,11 @@ class User(db.Model):
         return '<User %r>'%self.username
 
 if __name__=='__main__':
-    #创建表
+    # #创建表
     # db.drop_all()
     # db.create_all()
-
-    #insert
+    #
+    # #insert
     # admin_role=Role(name='Admin')
     # user_role=Role(name='User')
     # user_cuc=User(username='cuc',role=admin_role)

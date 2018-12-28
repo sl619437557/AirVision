@@ -9,14 +9,19 @@ app = Flask(__name__)
 # def index():
 #     return render_template('hello.html')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:1205@127.0.0.1:3306/Air'
-app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Flask
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:sl753951@127.0.0.1:3306/Air'
+# app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+# # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Flask
+
+app.config['SECRET_KEY']='123456'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:sl753951@127.0.0.1:3306/Air'
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN']=True
+
 db = SQLAlchemy(app)
 
 
 class Airport(db.Model):
-    __tablename__ = 'airport'
+    __tablename__ = 'airport2'
     AirportID = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.Text)
     City = db.Column(db.Text)
@@ -26,4 +31,8 @@ class Airport(db.Model):
     Latitude = db.Column(db.Float)
     Longitude = db.Column(db.Float)
     Altitude = db.Column(db.Integer)
-
+    def __repr(self):
+        return '<Airport %r>' %self.name
+    
+# db.create_all()
+print(Airport.query.all())
