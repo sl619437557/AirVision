@@ -34,5 +34,16 @@ class Airport(db.Model):
     def __repr(self):
         return '<Airport %r>' %self.name
     
-# db.create_all()
-print(Airport.query.all())
+class Routes(db.Model):
+    __tablename__='routes2'
+    Airline=db.Column(db.Text)
+    AirlineID=db.Column(db.Integer)
+    SourceAirport=db.Column(db.Text)
+    SourceAirportID=db.Column(db.Integer)
+    DestinationAirport=db.Column(db.Text)
+    DestinationAirportID=db.Column(db.Integer)
+    def __repr(self):
+        return '<Routes %r>' %self.name
+    
+    
+#db.create_all();
