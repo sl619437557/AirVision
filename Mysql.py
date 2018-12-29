@@ -2,6 +2,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
+from sqlalchemy.dialects import mysql
 
 app = Flask(__name__)
 
@@ -60,3 +61,14 @@ class Airline(db.Model):
 print(Airport.query.count())
 print(Routes.query.count())
 print(Airline.query.count())
+
+name=db.session.query(Airport.Name).filter(Airport.Country=='China').all()
+model=db.session.query(Airport).filter(Airport.Country=='China').all()
+id=db.session.query(Airport.AirportID).filter(Airport.Country=='China').all()
+namelist=[]
+for i in name:
+    b=str(i)
+    c=b[3:]
+    d=c[:-3]
+    namelist.append(d)
+print namelist
