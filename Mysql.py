@@ -72,3 +72,7 @@ for i in name:
     d=c[:-3]
     namelist.append(d)
 print namelist
+
+
+@app.route('/<name>',methods=['GET','POST'])
+def AirportUrl():
