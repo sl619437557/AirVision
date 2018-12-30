@@ -1,6 +1,6 @@
 from . import airviz
 from flask import render_template
-
+from .. import db
 
 
 @airviz.route('/airviz',methods=['GET','POST'])
@@ -14,7 +14,7 @@ def index():
 
 #这里写获得节点的方法
 def getNodes():
-
+    name = db.session.query(Airport.Name).filter(Airport.Country == 'China').all()
     return []
 
 
