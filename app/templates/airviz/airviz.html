@@ -98,8 +98,8 @@ text {
     <button id="fullscreen" style="float:left;width:60px;height:40px;" title="全屏显示">全屏</button>
     <div  id="graphics" style="height:600px;"></div>
 </div>
-<script src="app/static/airviz/d3.v3.min.js"></script>
-<script src="app/static/airviz/jquery-1.8.3.min.js"></script>
+<script src="{{url_for('static',filename='airviz/d3.v3.min.js')}}"></script>
+<script src="{{url_for('static',filename='airviz/jquery-1.8.3.min.js')}}"></script>
 
 <script>
   var linkss = [
