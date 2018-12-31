@@ -81,17 +81,16 @@ print(Airline.query.count())
 #     namelist.append(d)
 # print namelist
 
-airportModel=Airport.query.filter(Airport.Country == 'China').first()
-print airportModel
-name = db.session.query(Airport.Name).filter(Airport.Country == 'China').all()
-id = db.session.query(Airport.AirportID).filter(Airport.Country == 'China').all()
+airportModel=Airport.query.filter(Airport.Country == 'China').all()
 nodejson=[]
-d = {"name": "","AirportID":-1}
-for g in name:
-    b=str(g)
-    c=b[3:]
-    g=c[:-3]
-    test=d.copy()
-    test["name"]=g
+d = {"AirportID":-1,"Country":"","name": ""}
+for g in airportModel:
+    name=g.Name
+    id=g.AirportID
+    country=g.Country
+    test = d.copy()
+    test["name"] = name
+    test["AirportID"]=id
+    test["Country"]=country
     nodejson.append(test)
 print nodejson

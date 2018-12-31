@@ -14,7 +14,19 @@ def index():
 
 
 def getNodes():
-    return []
+    airportModel = db.Airport.query.filter(db.Airport.Country == 'China').all()
+    nodejson = []
+    d = {"AirportID": -1, "Country": "", "name": ""}
+    for g in airportModel:
+        name = g.Name
+        id = g.AirportID
+        country = g.Country
+        test = d.copy()
+        test["name"] = name
+        test["AirportID"] = id
+        test["Country"] = country
+        nodejson.append(test)
+    return nodejson
 
 def getEdges():
 
