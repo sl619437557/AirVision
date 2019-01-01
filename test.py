@@ -14,7 +14,7 @@ app = Flask(__name__)
 # # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Flask
 
 app.config['SECRET_KEY'] = '123456'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:1205@127.0.0.1:3306/Air'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:sl753951@127.0.0.1:3306/Air'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 db = SQLAlchemy(app)
@@ -61,8 +61,8 @@ class Airline(db.Model):
     def __repr(self):
         return '<Routes %r>' % self.name
 
-
-db.create_all()
+# db.drop_all()
+# db.create_all()
 
 print(Airport.query.count())
 print(Routes.query.count())
@@ -93,4 +93,21 @@ for g in airportModel:
     test["AirportID"]=id
     test["Country"]=country
     nodejson.append(test)
-print nodejson
+print(nodejson)
+airportid=[]
+edgejson=[]
+d = {"source":-1,"target":-1}
+for g in airportModel:
+    id=g.AirportID
+    routesModel=Routes.query.filter(Routes.SourceAirportID==id).all()
+    for i in routesModel:
+        source=i.SourceAirportID
+        target=i.DestinationAirportID
+        test=d.copy()
+        test["source"]=source
+        test["target"]=target
+        edgejson.append(test)
+    #print(edgejson)
+print(len(edgejson))
+
+

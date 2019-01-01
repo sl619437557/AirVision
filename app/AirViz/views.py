@@ -29,5 +29,17 @@ def getNodes():
     return nodejson
 
 def getEdges():
-
-    return []
+    airportModel = db.Airport.query.filter(db.Airport.Country == 'China').all()
+    edgejson = []
+    d = {"source": -1, "target": -1}
+    for g in airportModel:
+        id = g.AirportID
+        routesModel = db.Routes.query.filter(db.Routes.SourceAirportID == id).all()
+        for i in routesModel:
+            source = i.SourceAirportID
+            target = i.DestinationAirportID
+            test = d.copy()
+            test["source"] = source
+            test["target"] = target
+            edgejson.append(test)
+    return edgejson
